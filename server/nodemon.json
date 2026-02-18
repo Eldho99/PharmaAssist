@@ -1,0 +1,11 @@
+{
+    "watch": [
+        ".",
+        ".env"
+    ],
+    "ext": "js,json,env",
+    "ignore": [
+        "uploads/"
+    ],
+    "exec": "node index.js"
+}
