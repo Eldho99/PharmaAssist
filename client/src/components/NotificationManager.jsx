@@ -14,7 +14,7 @@ const NotificationManager = () => {
 
             try {
                 // Fetch medicines directly here to ensure background checking even if user is on another page
-                const res = await axios.get('http://localhost:5000/api/medicine', {
+                const res = await axios.get('/api/medicine', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 const medicines = res.data;

@@ -23,7 +23,7 @@ const PaymentPage = () => {
         const createPaymentIntent = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const res = await axios.post("http://localhost:5000/api/payments/create-payment-intent",
+                const res = await axios.post("/api/payments/create-payment-intent",
                     { amount: amount, currency: "usd" },
                     { headers: { Authorization: `Bearer ${token}` } }
                 );

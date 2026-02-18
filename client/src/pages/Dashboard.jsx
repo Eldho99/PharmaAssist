@@ -22,10 +22,10 @@ const Dashboard = () => {
         try {
             const token = localStorage.getItem('token');
             const [medsRes, ordersRes] = await Promise.all([
-                axios.get('http://localhost:5000/api/medicine', {
+                axios.get('/api/medicine', {
                     headers: { Authorization: `Bearer ${token}` }
                 }),
-                axios.get('http://localhost:5000/api/orders', {
+                axios.get('/api/orders', {
                     headers: { Authorization: `Bearer ${token}` }
                 }).catch(() => ({ data: [] })) // Fallback if orders fail
             ]);
@@ -81,7 +81,7 @@ const Dashboard = () => {
     const handleTakeDose = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(`http://localhost:5000/api/medicine/${id}/take`, {}, {
+            await axios.patch(`/api/medicine/${id}/take`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchData(); // Refresh

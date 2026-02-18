@@ -128,9 +128,9 @@ const DeliveryDashboard = () => {
     const fetchTasks = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/delivery/seed', {}, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.post('/api/delivery/seed', {}, { headers: { Authorization: `Bearer ${token}` } });
 
-            const res = await axios.get('http://localhost:5000/api/delivery/my-tasks', {
+            const res = await axios.get('/api/delivery/my-tasks', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setTasks(res.data);
@@ -145,7 +145,7 @@ const DeliveryDashboard = () => {
     const updateStatus = async (id, newStatus) => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.patch(`http://localhost:5000/api/delivery/${id}/status`, { status: newStatus }, {
+            const res = await axios.patch(`/api/delivery/${id}/status`, { status: newStatus }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchTasks();

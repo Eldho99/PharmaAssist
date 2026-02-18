@@ -30,7 +30,7 @@ const UploadPrescription = () => {
         setLoading(true);
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:5000/api/medicine', {
+            await axios.post('/api/medicine', {
                 ...manualForm,
                 times: [manualForm.time] // Simple single time support for now
             }, {
@@ -61,7 +61,7 @@ const UploadPrescription = () => {
         const formData = new FormData();
         formData.append('prescription', file);
         try {
-            const res = await axios.post('http://localhost:5000/api/ocr/upload', formData);
+            const res = await axios.post('/api/ocr/upload', formData);
             setExtractedData(res.data);
             setStatus('success');
         } catch (err) {
@@ -76,7 +76,7 @@ const UploadPrescription = () => {
         try {
             const token = localStorage.getItem('token');
             for (const med of extractedData.medicines) {
-                await axios.post('http://localhost:5000/api/medicine', {
+                await axios.post('/api/medicine', {
                     name: med.name,
                     dosage: med.dosage,
                     frequency: med.frequency,

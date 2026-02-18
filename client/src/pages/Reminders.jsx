@@ -13,7 +13,7 @@ const Reminders = () => {
     const fetchMedicines = async () => {
         try {
             const token = localStorage.getItem('token');
-            const res = await axios.get('http://localhost:5000/api/medicine', {
+            const res = await axios.get('/api/medicine', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMedicines(res.data);
@@ -27,7 +27,7 @@ const Reminders = () => {
     const handleTake = async (id) => {
         try {
             const token = localStorage.getItem('token');
-            await axios.patch(`http://localhost:5000/api/medicine/${id}/take`, {}, {
+            await axios.patch(`/api/medicine/${id}/take`, {}, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             fetchMedicines();

@@ -19,8 +19,8 @@ const PharmacistDashboard = () => {
             const headers = { Authorization: `Bearer ${token}` };
 
             const [prescRes, orderRes] = await Promise.all([
-                axios.get('http://localhost:5000/api/prescriptions/all', { headers }),
-                axios.get('http://localhost:5000/api/orders/all', { headers })
+                axios.get('/api/prescriptions/all', { headers }),
+                axios.get('/api/orders/all', { headers })
             ]);
 
             // Transform data to a unified format
@@ -56,14 +56,14 @@ const PharmacistDashboard = () => {
         try {
             const token = localStorage.getItem('token');
             const endpoint = type === 'Prescription' ? 'prescriptions' : 'orders';
-            await axios.patch(`http://localhost:5000/api/${endpoint}/${id}/status`, { status }, {
+            await axios.patch(`/api/${endpoint}/${id}/status`, { status }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
 
             if (status === 'dispatched') {
                 // Trigger delivery task creation
                 try {
-                    await axios.post('http://localhost:5000/api/delivery/create', { orderId: id, type }, {
+                    await axios.post('/api/delivery/create', { orderId: id, type }, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                 } catch (err) {
